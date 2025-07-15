@@ -1,0 +1,65 @@
+[
+  {
+    "ContainingType": "FBTarjeta.Controllers.TarjetaController",
+    "Method": "Get",
+    "RelativePath": "api/Tarjeta",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FBTarjeta.Controllers.TarjetaController",
+    "Method": "Post",
+    "RelativePath": "api/Tarjeta",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "tarjeta",
+        "Type": "FBTarjeta.Models.TarjetaCredito",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FBTarjeta.Controllers.TarjetaController",
+    "Method": "Put",
+    "RelativePath": "api/Tarjeta/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "tarjeta",
+        "Type": "FBTarjeta.Models.TarjetaCredito",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "FBTarjeta.Controllers.TarjetaController",
+    "Method": "Delete",
+    "RelativePath": "api/Tarjeta/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]
