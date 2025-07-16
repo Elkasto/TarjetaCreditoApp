@@ -1,0 +1,56 @@
+<h5 class="titulo">{{ accion | uppercase }} TARJETA</h5>
+<form [formGroup]="form" (ngSubmit)="guardar()">
+  <div class="input-group input-group-lg mb-3">
+    <span class="input-group-text">
+      <i class="fa-solid fa-user-tie"
+         [class.green-icon]="form.get('titular')?.valid"
+         [class.red-icon]="form.get('titular')?.invalid && form.get('titular')?.touched">
+      </i>
+    </span>
+    <input formControlName="titular" type="text" class="form-control" placeholder="Titular">
+  </div>
+
+  <div class="input-group input-group-lg mb-3">
+    <span class="input-group-text">
+      <i class="fa-solid fa-credit-card"
+         [class.green-icon]="form.get('numeroTarjeta')?.valid"
+         [class.red-icon]="form.get('numeroTarjeta')?.invalid && form.get('numeroTarjeta')?.touched">
+      </i>
+    </span>
+    <input formControlName="numeroTarjeta" maxlength="16" type="text" class="form-control" placeholder="Número de tarjeta">
+  </div>
+
+  <div class="row">
+    <div class="col-lg-7">
+      <div class="input-group input-group-lg mb-3">
+        <span class="input-group-text">
+          <i class="fa-solid fa-calendar-days"
+             [class.green-icon]="form.get('fechaExpiracion')?.valid"
+             [class.red-icon]="form.get('fechaExpiracion')?.invalid && form.get('fechaExpiracion')?.touched">
+          </i>
+        </span>
+        <input formControlName="fechaExpiracion" maxlength="5" type="text"
+               class="form-control" placeholder="MM/AA"
+               (input)="formatExpiration($event)">
+      </div>
+    </div>
+
+    <div class="col-lg-5">
+      <div class="input-group input-group-lg mb-3">
+        <span class="input-group-text">
+          <i class="fa-solid fa-key"
+             [class.green-icon]="form.get('cvv')?.valid"
+             [class.red-icon]="form.get('cvv')?.invalid && form.get('cvv')?.touched">
+          </i>
+        </span>
+        <input formControlName="cvv" maxlength="3" type="password" class="form-control" placeholder="CVV">
+      </div>
+    </div>
+  </div>
+
+  <div class="d-grid gap-2">
+    <button [disabled]="form.invalid" type="submit" class="btn btn-success btn-lg">
+      <i class="fa-solid fa-database"></i> &nbsp;Aceptar
+    </button>
+  </div>
+</form>

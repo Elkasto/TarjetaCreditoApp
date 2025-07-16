@@ -54,14 +54,20 @@ namespace FBTarjeta.Controllers
         {
             try
             {
-                if (id != tarjeta.id) 
+                var tarjetaExistente = await _context.Tarjetas.FindAsync(id);
+                if (tarjetaExistente == null)
                 {
                     return NotFound();
                 }
 
-                _context.Update(tarjeta);
+                // Actualizamos campos manualmente
+                tarjetaExistente.Titular = tarjeta.Titular;
+                tarjetaExistente.NumeroTarjeta = tarjeta.NumeroTarjeta;
+                tarjetaExistente.FechaExpiracion = tarjeta.FechaExpiracion;
+                tarjetaExistente.CVV = tarjeta.CVV;
+
                 await _context.SaveChangesAsync();
-                return Ok(new {message = "La tarjeta fue actualizada!"});
+                return Ok(new { message = "La tarjeta fue actualizada!" });
             }
             catch (Exception ex)
             {

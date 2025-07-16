@@ -1,0 +1,32 @@
+<h5 class="titulo">LISTADO DE TARJETAS</h5>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Titular</th>
+      <th>Tarjeta</th>
+      <th>Expiración</th>
+      <th>Editar</th>
+      <th>Eliminar</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let tarjeta of tarjetas">
+      <td>{{ tarjeta.titular }}</td>
+      <td>{{ maskCardNumber(tarjeta.numeroTarjeta) }}</td>
+      <td>{{ tarjeta.fechaExpiracion }}</td>
+      <td>
+        <i class="fa-solid fa-pen-to-square text-info"
+           style="cursor: pointer"
+           (click)="onEditar.emit(tarjeta)">
+        </i>
+      </td>
+      <td>
+        <i class="fa-solid fa-trash text-danger"
+           style="cursor: pointer"
+           (click)="confirmarEliminar(tarjeta.id)">
+        </i>
+      </td>
+    </tr>
+  </tbody>
+</table>
