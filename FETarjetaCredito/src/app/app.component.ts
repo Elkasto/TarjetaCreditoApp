@@ -5,7 +5,7 @@ import { TarjetaCreditoComponent } from "./components/tarjeta-credito/tarjeta-cr
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, TarjetaCreditoComponent],
+  imports: [TarjetaCreditoComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

@@ -2,8 +2,6 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TarjetaService } from '../../services/tarjeta.service';
 import { ToastrService } from 'ngx-toastr';
-
-// 🧩 Componentes standalone
 import { TarjetaHeaderComponent } from './tarjeta-header/tarjeta-header.component';
 import { TarjetaFormComponent } from './tarjeta-form/tarjeta-form.component';
 import { TarjetaListComponent } from './tarjeta-list/tarjeta-list.component';
@@ -34,23 +32,29 @@ export class TarjetaCreditoComponent {
     console.log('Datos a guardar: ', data);
     if (this.tarjetaEditada) {
       console.log('Editando tarjeta con ID:', this.tarjetaEditada.id);
-      this._tarjetaService.updateTarjeta(this.tarjetaEditada.id, data).subscribe(() => {
-        this.toastr.info('La tarjeta fue actualizada exitosamente', 'Tarjeta Actualizada');
-        this.tarjetaEditada = null;
-        this.accion = 'Agregar';
-        this.obtenerTarjetas();
-      }, error => {
-        this.toastr.error('Ocurrió un error al actualizar la tarjeta', 'Error');
-        console.error(error);
+      this._tarjetaService.updateTarjeta(this.tarjetaEditada.id, data).subscribe({
+        next: () => {
+          this.toastr.info('La tarjeta fue actualizada exitosamente', 'Tarjeta Actualizada');
+          this.tarjetaEditada = null;
+          this.accion = 'Agregar';
+          this.obtenerTarjetas();
+        },
+        error: (err) => {
+          this.toastr.error('Ocurrió un error al actualizar la tarjeta', 'Error');
+          console.error(err);
+        }
       });
     } else {
       console.log('Guardando nueva tarjeta');
-      this._tarjetaService.saveTarjeta(data).subscribe(() => {
-        this.toastr.success('La tarjeta ha sido registrada con éxito!', 'Tarjeta Registrada');
-        this.obtenerTarjetas();
-      }, error => {
-        this.toastr.error('Ocurrió un error al guardar la tarjeta', 'Error');
-        console.error(error);
+      this._tarjetaService.saveTarjeta(data).subscribe({
+        next: () => {
+          this.toastr.success('La tarjeta ha sido registrada con éxito!', 'Tarjeta Registrada');
+          this.obtenerTarjetas();
+        },
+        error: (err) => {
+          this.toastr.error('Ocurrió un error al guardar la tarjeta', 'Error');
+          console.error(err);
+        }
       });
     }
   }
@@ -61,12 +65,15 @@ export class TarjetaCreditoComponent {
   }
 
   eliminarTarjeta(id: number): void {
-    this._tarjetaService.deleteTarjeta(id).subscribe(() => {
-      this.toastr.error('La tarjeta fue eliminada correctamente', 'Tarjeta Eliminada');
-      this.obtenerTarjetas();
-    }, error => {
-      this.toastr.error('Ocurrió un error al eliminar la tarjeta', 'Error');
-      console.error(error);
+    this._tarjetaService.deleteTarjeta(id).subscribe({
+      next: () => {
+        this.toastr.error('La tarjeta fue eliminada correctamente', 'Tarjeta Eliminada');
+        this.obtenerTarjetas();
+      },
+      error: (err) => {
+        this.toastr.error('Ocurrió un error al eliminar la tarjeta', 'Error');
+        console.error(err);
+      }
     });
   }
 
